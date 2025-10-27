@@ -22,17 +22,17 @@ for (let i = 0; i < columns; i++) {
 // Die Funktion, die immer wieder aufgerufen wird, um die Animation zu zeichnen
 function draw() {
     // 1. Der "Fade"-Effekt:
-    // Zeichnet ein halbtransparentes Rechteck in der Hintergrundfarbe über die Leinwand.
-    ctx.fillStyle = 'rgba(59, 43, 27, 0.05)'; // Sehr dunkles Braun, halbtransparent
+    // Zeichnet ein halbtransparentes schwarzes Rechteck über die Leinwand.
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; 
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // 2. Schriftfarbe und -stil festlegen
-    ctx.fillStyle = '#964B00'; // Ein heller Braunton für die Emojis
+    ctx.fillStyle = '#964B00'; // Braunton für die Emojis
     ctx.font = fontSize + 'px monospace';
 
     // 3. Durch alle Spalten (drops) iterieren
     for (let i = 0; i < drops.length; i++) {
-        // Wählt das Zeichen aus (hier gibt es nur eines)
+        // Wählt das Zeichen aus
         const text = characters; 
         
         const x = i * fontSize;
@@ -42,25 +42,27 @@ function draw() {
         ctx.fillText(text, x, y);
 
         // 4. Den Tropfen zurücksetzen:
+        // Wenn der Tropfen den unteren Rand erreicht und eine zufällige Chance eintritt
         if (y > canvas.height && Math.random() > 0.975) {
             drops[i] = 0;
         }
 
-        // 5. Die y-Position für den nächsten Frame erhöhen
+        // 5. Die y-Position für den nächsten Frame erhöhen (der Tropfen "fällt")
         drops[i]++;
     }
 }
 
-// Startet die Animation
-setInterval(draw, 40); // Etwas langsamer für Emojis (kannst du anpassen)
+// Startet die Animation: Ruft 'draw' alle 40 Millisekunden auf
+setInterval(draw, 40);
 
-// Optional: Fenstergröße anpassen
+// Passt die Leinwand an, wenn sich die Fenstergröße ändert
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     
+    // Spalten neu berechnen und Tropfen zurücksetzen
     const newColumns = Math.floor(canvas.width / fontSize);
-    drops.length = 0; 
+    drops.length = 0; // Leert das Array
     for (let i = 0; i < newColumns; i++) {
         drops[i] = 1;
     }
