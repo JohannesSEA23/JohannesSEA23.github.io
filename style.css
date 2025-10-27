@@ -1,0 +1,14 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Verhindert Scrollbalken */
+    
+    /* Dunkelbrauner Hintergrund passend zum Thema */
+    background-color: #3B2B1B; 
+}
+
+#matrix-canvas {
+    display: block;
+    width: 100vw;  /* 100% der Ansichtsfenster-Breite */
+    height: 100vh; /* 100% der Ansichtsfenster-Höhe */
+}
