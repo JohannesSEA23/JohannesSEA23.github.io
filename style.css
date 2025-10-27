@@ -1,12 +1,14 @@
+/* Setzt den Browser-Standardabstand zurück */
 body, html {
     margin: 0;
     padding: 0;
     overflow: hidden; /* Verhindert Scrollbalken */
     
-    /* Dunkelbrauner Hintergrund passend zum Thema */
-    background-color: #3B2B1B; 
+    /* Reines Schwarz für maximalen Kontrast */
+    background-color: #000; 
 }
 
+/* Stellt sicher, dass die Leinwand den gesamten Bildschirm einnimmt */
 #matrix-canvas {
     display: block;
     width: 100vw;  /* 100% der Ansichtsfenster-Breite */
