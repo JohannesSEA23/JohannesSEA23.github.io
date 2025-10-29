@@ -2,68 +2,123 @@
 const canvas = document.getElementById('matrix-canvas');
 const ctx = canvas.getContext('2d');
 
-// Setzt die Breite und Höhe der Leinwand auf die volle Fenstergröße
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+// --- Globale Einstellungen ---
+const rainFontSize = 16;
+const rainCharacters = '💩';
+const rainColor = '#964B00'; // Braunton für die Emojis
+const rainFadeColor = 'rgba(0, 0, 0, 0.05)'; // Fade-Effekt (Schwarz)
 
-// Zeichen, die "regnen" sollen
-const characters = '💩'; // Nur das 💩 Emoji
+const introMessage = "Danke Achilles";
+const introFontSize = 24; // Etwas größer für die Nachricht
+const introColor = '#0F0';  // Klassisches Matrix-Grün für die Nachricht
+const introSpeed = 20;      // Wie schnell die Nachricht fällt
 
-const fontSize = 16;
-// Berechnet die Anzahl der Spalten basierend auf der Fensterbreite
-const columns = Math.floor(canvas.width / fontSize);
+// --- Animations-Variablen ---
+let columns;
+let drops = [];
+let messageX; // X-Position der Nachricht (wird berechnet)
+let messageY = 0; // Start Y-Position der Nachricht
+let animationState = 'intro'; // Startet mit dem Intro
 
-// Erstellt ein Array (drops), um die y-Position jeder Spalte zu speichern
-const drops = [];
-for (let i = 0; i < columns; i++) {
-    drops[i] = 1;
+/**
+ * Diese Funktion initialisiert oder setzt alle Größen-
+ * abhängigen Variablen zurück.
+ */
+function setupCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // 1. Berechnungen für den Emoji-Regen
+    columns = Math.floor(canvas.width / rainFontSize);
+    drops = [];
+    for (let i = 0; i < columns; i++) {
+        drops[i] = 1;
+    }
+
+    // 2. Berechnungen für die Intro-Nachricht
+    // (Wir müssen die Schriftart setzen, um die Breite zu messen)
+    ctx.font = introFontSize + 'px monospace';
+    const messageWidth = ctx.measureText(introMessage).width;
+    messageX = (canvas.width - messageWidth) / 2; // Zentriert die Nachricht
+    
+    // Setzt die Intro-Animation zurück, falls das Fenster verkleinert wird
+    messageY = 0;
+    animationState = 'intro';
 }
 
-// Die Funktion, die immer wieder aufgerufen wird, um die Animation zu zeichnen
+/**
+ * Die Haupt-Animationsschleife
+ */
 function draw() {
-    // 1. Der "Fade"-Effekt:
-    // Zeichnet ein halbtransparentes schwarzes Rechteck über die Leinwand.
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; 
+    // Prüft, in welcher Phase wir sind
+    if (animationState === 'intro') {
+        drawIntro();
+    } else if (animationState === 'rain') {
+        drawRain();
+    }
+}
+
+/**
+ * Zeichnet die Intro-Nachricht
+ */
+function drawIntro() {
+    // Solider schwarzer Hintergrund, um alte Frames zu löschen
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Setzt Farbe und Schriftart für die Nachricht
+    ctx.fillStyle = introColor;
+    ctx.font = introFontSize + 'px monospace';
+
+    // Zeichnet die Nachricht
+    ctx.fillText(introMessage, messageX, messageY);
+
+    // Bewegt die Nachricht nach unten
+    messageY += introSpeed;
+
+    // Wenn die Nachricht den Bildschirm verlassen hat
+    if (messageY > canvas.height + introFontSize) {
+        animationState = 'rain'; // Wechsle zur Regen-Phase
+    }
+}
+
+/**
+ * Zeichnet den 💩-Regen (der Code, den wir vorher hatten)
+ */
+function drawRain() {
+    // 1. Der "Fade"-Effekt
+    ctx.fillStyle = rainFadeColor;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // 2. Schriftfarbe und -stil festlegen
-    ctx.fillStyle = '#964B00'; // Braunton für die Emojis
-    ctx.font = fontSize + 'px monospace';
+    ctx.fillStyle = rainColor;
+    ctx.font = rainFontSize + 'px monospace';
 
     // 3. Durch alle Spalten (drops) iterieren
     for (let i = 0; i < drops.length; i++) {
-        // Wählt das Zeichen aus
-        const text = characters; 
-        
-        const x = i * fontSize;
-        const y = drops[i] * fontSize;
+        const text = rainCharacters;
+        const x = i * rainFontSize;
+        const y = drops[i] * rainFontSize;
 
-        // Das Zeichen an die Position (x, y) malen
         ctx.fillText(text, x, y);
 
-        // 4. Den Tropfen zurücksetzen:
-        // Wenn der Tropfen den unteren Rand erreicht und eine zufällige Chance eintritt
+        // 4. Den Tropfen zurücksetzen
         if (y > canvas.height && Math.random() > 0.975) {
             drops[i] = 0;
         }
 
-        // 5. Die y-Position für den nächsten Frame erhöhen (der Tropfen "fällt")
+        // 5. Die y-Position erhöhen
         drops[i]++;
     }
 }
 
-// Startet die Animation: Ruft 'draw' alle 40 Millisekunden auf
-setInterval(draw, 40);
+// --- Start & Event Listeners ---
 
-// Passt die Leinwand an, wenn sich die Fenstergröße ändert
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    
-    // Spalten neu berechnen und Tropfen zurücksetzen
-    const newColumns = Math.floor(canvas.width / fontSize);
-    drops.length = 0; // Leert das Array
-    for (let i = 0; i < newColumns; i++) {
-        drops[i] = 1;
-    }
-});
+// 1. Führt setupCanvas() einmal beim Start aus
+setupCanvas();
+
+// 2. Startet die Haupt-Animationsschleife
+setInterval(draw, 40); // (Kannst du schneller/langsamer machen, z.B. 33)
+
+// 3. Passt alles an, wenn die Fenstergröße geändert wird
+window.addEventListener('resize', setupCanvas);
