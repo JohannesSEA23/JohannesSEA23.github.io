@@ -1,2 +1,2 @@
-# JohannesSEA23.github.io
+# Johannes Github Page
 Fun Page
