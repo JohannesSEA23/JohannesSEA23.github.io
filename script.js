@@ -1,4 +1,4 @@
-// Konfiguration: Deine Berichte als Array von Objekten
+// 1. Deine Daten
 const reports = [
     {
         ticker: "MSFT",
@@ -6,16 +6,22 @@ const reports = [
         date: "17.04.2026",
         file: "MSFT_Report.html"
     }
-    // Wenn du einen neuen Report hast, einfach hier oben kopieren und einfügen:
+    // Weitere hier einfügen...
 ];
 
-// Funktion, die die Kacheln generiert
+// 2. Die Logik
 function renderReports() {
     const grid = document.getElementById('report-grid');
-    grid.innerHTML = ""; // Container leeren
+    
+    // Sicherheitscheck: Existiert das Grid überhaupt?
+    if (!grid) {
+        console.error("Fehler: Element 'report-grid' wurde in der HTML nicht gefunden!");
+        return;
+    }
+
+    grid.innerHTML = ""; 
 
     reports.forEach(report => {
-        // HTML-Struktur für eine einzelne Kachel bauen
         const card = `
             <a href="reports/${report.file}" class="report-card">
                 <div class="ticker-info">
@@ -28,10 +34,9 @@ function renderReports() {
                 <div class="open-btn">Analyse öffnen &rarr;</div>
             </a>
         `;
-        // In das Grid einfügen
         grid.innerHTML += card;
     });
 }
 
-// Ausführen, sobald die Seite geladen ist
+// 3. Starten
 document.addEventListener('DOMContentLoaded', renderReports);
