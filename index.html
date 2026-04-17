@@ -1,22 +1,152 @@
-import os
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aktien-Analyse Portal</title>
+    <style>
+        /* Modernes Design-Setup */
+        :root {
+            --primary-color: #0078d4;
+            --bg-color: #f3f5f8;
+            --card-bg: #ffffff;
+            --text-main: #333;
+            --text-muted: #666;
+        }
 
-def update_homepage():
-    report_files = os.listdir('reports')
-    links_html = ""
-    
-    for file in report_files:
-        if file.endswith(".html"):
-            ticker = file.split('_')[0]
-            links_html += f'<li><a href="reports/{file}">{ticker} Analyse - Stand {datetime.now().strftime("%d.%m.%Y")}</a></li>\n'
-    
-    html_template = f"""
-    <html>
-    <head><title>Meine Aktien-Analysen</title></head>
-    <body>
-        <h1>Stock Analysis Portal</h1>
-        <ul>{links_html}</ul>
-    </body>
-    </html>
-    """
-    with open("index.html", "w") as f:
-        f.write(html_template)
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            margin-top: 40px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Liste der Analysen */
+        .report-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .report-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .report-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .ticker-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .ticker-symbol {
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 20px;
+            min-width: 70px;
+            text-align: center;
+        }
+
+        .report-meta {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .report-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .report-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .open-btn {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>📊 Stock Analysis Portal</h1>
+        <p class="subtitle">Exklusive Aktien-Analysen & Fair-Value Prognosen</p>
+    </header>
+
+    <div class="report-list">
+        <a href="reports/MSFT_Report.html" class="report-card">
+            <div class="ticker-info">
+                <div class="ticker-symbol">MSFT</div>
+                <div class="report-meta">
+                    <span class="report-title">Microsoft Corp. Analyse</span>
+                    <span class="report-date">Aktualisiert am 17.04.2026</span>
+                </div>
+            </div>
+            <div class="open-btn">Analyse öffnen &rarr;</div>
+        </a>
+
+        </div>
+
+    <footer>
+        &copy; 2026 Aktien-Newsletter | Generiert mit Python | Gehostet auf GitHub Pages
+    </footer>
+</div>
+
+</body>
+</html>
