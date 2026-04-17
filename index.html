@@ -1,19 +1,22 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shit happens</title>
-    
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💩</text></svg>">
-    
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    
-    <canvas id="matrix-canvas"></canvas>
+import os
 
-    <script src="script.js" defer></script>
-
-</body>
-</html>
+def update_homepage():
+    report_files = os.listdir('reports')
+    links_html = ""
+    
+    for file in report_files:
+        if file.endswith(".html"):
+            ticker = file.split('_')[0]
+            links_html += f'<li><a href="reports/{file}">{ticker} Analyse - Stand {datetime.now().strftime("%d.%m.%Y")}</a></li>\n'
+    
+    html_template = f"""
+    <html>
+    <head><title>Meine Aktien-Analysen</title></head>
+    <body>
+        <h1>Stock Analysis Portal</h1>
+        <ul>{links_html}</ul>
+    </body>
+    </html>
+    """
+    with open("index.html", "w") as f:
+        f.write(html_template)
