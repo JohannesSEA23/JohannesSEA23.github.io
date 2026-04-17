@@ -105,3 +105,31 @@ footer {
     color: var(--text-muted);
     font-size: 0.8rem;
 }
+.disclaimer-box {
+    margin-top: 50px;
+    padding: 25px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-left: 4px solid #f44336; /* Rote Warnlinie */
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.disclaimer-box h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.disclaimer-box strong {
+    color: #333;
+}
+
+footer {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
