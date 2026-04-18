@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+            background-color: #f4f7f9;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            color: #333;
+            line-height: 1.5;
+        }
+        .header {
+            background-color: #008fd3; /* SAP Blau */
+            color: white;
+            padding: 40px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo-box {
+            width: 55px;
+            height: 50px;
+            background-color: white;
+            display: inline-block;
+            margin-right: 15px;
+            border-radius: 6px;
+            text-align: center;
+            line-height: 50px;
+            color: #008fd3;
+            font-weight: 900;
+            font-size: 16pt;
+            letter-spacing: 1px;
+        }
+        .title-section h1 {
+            margin: 0;
+            font-size: 28pt;
+            letter-spacing: 1px;
+        }
+        .title-section p {
+            margin: 5px 0 0 0;
+            opacity: 0.9;
+            font-size: 12pt;
+        }
+        .container {
+            padding: 30px 50px;
+        }
+        .grid {
+            display: block;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .card h2 {
+            margin-top: 0;
+            color: #008fd3;
+            font-size: 16pt;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        .metric-row {
+            display: table;
+            width: 100%;
+            margin-top: 15px;
+        }
+        .metric-item {
+            display: table-cell;
+            width: 33%;
+            text-align: center;
+            border-right: 1px solid #eee;
+        }
+        .metric-item:last-child {
+            border-right: none;
+        }
+        .metric-value {
+            display: block;
+            font-size: 18pt;
+            font-weight: bold;
+            color: #222;
+        }
+        .metric-label {
+            display: block;
+            font-size: 9pt;
+            color: #666;
+            text-transform: uppercase;
+        }
+        .description-box {
+            font-size: 11pt;
+            color: #444;
+            text-align: justify;
+        }
+        .highlight-box {
+            background-color: #eef7ff;
+            border-left: 5px solid #008fd3;
+            padding: 15px;
+            margin-top: 10px;
+        }
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 8pt;
+            color: #999;
+        }
+        .tag-green { color: #28a745; }
+        .tag-blue { color: #008fd3; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div style="display: flex; align-items: center;">
+        <div class="logo-box">SAP</div>
+        <div class="title-section">
+            <h1>SAP SE</h1>
+            <p>Ticker: SAP.DE | ISIN: DE0007164600</p>
+        </div>
+    </div>
+    <div style="text-align: right;">
+        <div style="font-size: 20pt; font-weight: bold;">€156.24</div>
+        <div style="font-size: 9pt; opacity: 0.8;">AKTUELLER KURS (EUR)</div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card">
+        <h2>Unternehmensprofil</h2>
+        <div class="description-box">
+            Die SAP SE ist Europas größtes Softwareunternehmen und ein weltweit führender Anbieter von Enterprise-Resource-Planning-Software (ERP). Das Unternehmen unterstützt Organisationen aller Größen dabei, ihre Geschäftsprozesse, Finanzen, Lieferketten und Personalressourcen effizient zu steuern. Zu den wichtigsten Wachstumstreibern gehören aktuell die Cloud-Transformation (SAP S/4HANA Cloud), die Business Technology Platform (BTP) sowie die tiefe Integration von KI-Lösungen (SAP Business AI). SAP profitiert durch tiefe Systemintegration branchenübergreifend von extrem hohen Wechselkosten (Moat) und planbaren, wiederkehrenden Cloud-Umsätzen.
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Bewertungs-Basis (Custom Modus)</h2>
+        <div class="metric-row">
+            <div class="metric-item">
+                <span class="metric-value">26.00</span>
+                <span class="metric-label">Gewähltes Basis-KGV</span>
+            </div>
+            <div class="metric-item">
+                <span class="metric-value">7.64 €</span>
+                <span class="metric-label">EPS Prognose (12M)</span>
+            </div>
+            <div class="metric-item">
+                <span class="metric-value">16.52 €</span>
+                <span class="metric-label">EPS Prognose (2031)</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Kursprognose & Renditeerwartung</h2>
+        
+        <div style="margin-bottom: 20px;">
+            <h3 style="font-size: 12pt; color: #666; margin-bottom: 5px;">KURZFRISTIG: 12-MONATS-ZIEL (18.04.2027)</h3>
+            <div style="font-size: 24pt; font-weight: bold; color: #008fd3;">198.53 EUR <span style="font-size: 14pt; color: #28a745;">(+27.07 %)</span></div>
+        </div>
+
+        <div class="highlight-box">
+            <h3 style="font-size: 12pt; color: #008fd3; margin-top: 0; margin-bottom: 5px;">LANGFRISTIG: PROGNOSE BIS 2031</h3>
+            <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+                <div>
+                    <div style="font-size: 24pt; font-weight: bold;">429.56 EUR</div>
+                    <div style="font-size: 10pt; color: #666;">ZIELKURS ZUM 31.12.2031</div>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size: 20pt; font-weight: bold; color: #28a745;">19.41 % p.a.</div>
+                    <div style="font-size: 10pt; color: #666;">RENDITEERWARTUNG (CAGR)</div>
+                </div>
+            </div>
+            <div style="margin-top: 15px; font-size: 10pt; color: #555; border-top: 1px solid #d0e0f0; padding-top: 10px;">
+                Die Prognose basiert auf einem konstanten KGV-Multiple von 26.0 und berücksichtigt historische Bewertungsbänder (±10% bis ±40%). Bei Erreichen der Gewinnziele ergibt sich ein Gesamtrendite-Potenzial von <strong>174.93 %</strong> über den Anlagezeitraum.
+            </div>
+        </div>
+    </div>
+
+    <div class="card" style="background-color: #333; color: white;">
+        <h2 style="color: #00a4ef; border-color: #444;">Investment Fazit</h2>
+        <p style="font-size: 10.5pt; margin-bottom: 0;">
+            Basierend auf der Custom-Analyse bietet SAP aktuell ein extrem attraktives Risiko-Rendite-Profil. Mit einer berechneten jährlichen Renditeerwartung (CAGR) von über 19 % schlägt das Softwarehaus den historischen Marktdurchschnitt deutlich, getrieben durch das solide EPS-Wachstum. Der aktuelle Kurs von €156.24 bietet somit einen vielversprechenden Einstiegspunkt mit rund 27 % kurzfristigem Aufholpotenzial auf den fairen Wert.
+        </p>
+    </div>
+</div>
+
+<div class="footer">
+    Erstellt am 18. April 2026 | Quelle: Eulerpool / Custom Analysis Tool | Keine Anlageberatung.
+</div>
+
+</body>
+</html>
