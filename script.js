@@ -5,6 +5,12 @@ const reports = [
         name: "Microsoft Corp.",
         date: "17.04.2026",
         file: "MSFT_Report.html"
+    },
+    {
+        ticker: "SAP",
+        name: "SAP SE",
+        date: "18.04.2026",
+        file: "SAP_Report.html"
     }
     // Weitere hier einfügen...
 ];
